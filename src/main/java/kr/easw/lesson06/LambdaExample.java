@@ -8,7 +8,6 @@ import java.util.function.Supplier;
 
 /**
  * 해당 클래스는 람다 표현식에 대해 조금 더 친숙해지기 위해 구성된 문제입니다.
- * <p>
  * 미리 선언된 람다 표현식을 사용하여, 예제로 주어진 메서드와 동일한 기능을 수행하는 코드를 작성해보세요.
  */
 public class LambdaExample {
@@ -53,8 +52,7 @@ public class LambdaExample {
     @SuppressWarnings({"Convert2MethodRef", "RedundantSuppression"})
     private static final BiFunction<Integer, Integer, Integer> adjuster = (number, adjustment) -> number + adjustment;
 
-
-    public static void main(String[] args) {
+    public static void main(String[] args) {        // 정답입니다!가 출력되면 됨
         int first = numberSupplier.get();
         int second = numberSupplier.get();
         int example = exampleResult(first, second);
@@ -65,7 +63,6 @@ public class LambdaExample {
             System.out.println("오답입니다!");
         }
     }
-
     // 이 메서드는 두 개의 정수를 받아, 두번째 값을 음수로 변환하고, 이를 출력한 다음 두 값을 더한 값을 반환합니다.
     private static int exampleResult(int base, int delta) {
         int negative = -delta;
@@ -78,8 +75,10 @@ public class LambdaExample {
     // 각 람다는 서로 다른 이름으로 값을 수용한다는것을 잊지 마세요.
     // Function / BiFunction은 apply를, Consumer는 accept를 사용합니다.
     private static int lambdaResult(int base, int delta) {
+        int a = negativeConverter.apply(delta);
+        printer.accept(a);
+        return adjuster.apply(base, delta);
 
-        throw new UnsupportedOperationException("이 코드를 지우고, 정답을 작성하세요.");
     }
 
 }
